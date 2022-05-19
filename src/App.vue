@@ -2,6 +2,8 @@
   <div id="app">
     <NavBar
     />
+
+    <h3 class="titulo1">Cerveza Artesanal</h3>
     <br>
     <MiCard
    v-for="(product, i) in products" :key="i"
@@ -87,4 +89,10 @@ export default {
 </script>
 
 <style>
+
+.titulo1{
+
+    text-align: center;
+    color: brown;
+}
 </style>
