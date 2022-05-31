@@ -1,36 +1,18 @@
 <template>
   <div>
- <nav class="  navbar navbar-expand-lg navbar-light bg-light">
-      <div class=" BarraNav container-fluid">
-        <a class="navbar-brand " href="">HALSEY</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item ">
-              <to class="nav-link active" aria-current="page" to="">Inicio</to>
-            </li>
-        <li class="nav-item ">
-              <to class="nav-link active" aria-current="page" to="">Productos</to>
-            </li>
-            <li class="nav-item">
-            <to class="nav-link active" aria-current="page" to="">Galeria</to>
-            </li>
-            <li class="nav-item">
-            <to class="nav-link active" aria-current="page" to="#">Contacto</to>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <b-nav tabs fill>
+      <b-nav-item>Inicio</b-nav-item>
+      <b-nav-item>Productos</b-nav-item>
+      <b-nav-item>Contactos </b-nav-item>
 
-       <button class="btn btn-outline-dark" type="submit" data-bs-toggle="modal" data-bs-target="#myModal">
-              <i class="bi-cart-fill me-1"></i>
-              Carrito
-              <span id="contador" class="badge bg-dark text-white ms-1 rounded-pill"></span>
-            </button>
-
-    </nav>
+      <button @click="ventana = true" class="btn btn-outline-dark">
+        <i class="bi-cart-fill me-1"></i>
+        Carrito
+        <span
+          class="badge bg-dark text-white ms-1 rounded-pill"
+        ></span>
+      </button>
+    </b-nav>
   </div>
 </template>
 
@@ -42,6 +24,9 @@ export default {
     producto: {
       type: Array,
     },
+    cart: {
+      type: Array,
+    }
   },
   data() {
     return {
@@ -49,11 +34,11 @@ export default {
     };
   },
 
-  computed: {
-    productosCounter() {
-      return this.products.length;
-    },
-  },
+   computed: {
+    cartCounter () {
+      return this.cart.reduce((acc, product) => acc + product.quantity, 0)
+    }
+  }
 };
 </script>
 

@@ -1,12 +1,18 @@
 <template>
   <div class="productos">
-    <div class="card " style="width: 18rem">
+    <div class="card" style="width: 18rem">
       <h5 class="card-title text-center">{{ titulo }}</h5>
+      <img class="img-card" :src="imagen" alt="" />
       <!-- <img :src="getImgUrl()" class="card-img-top d-block w-50" :alt="titulo"> -->
       <div class="card-body">
         <p class="card-text">${{ precio }}</p>
-        <button type="button" class="btn btn-warning text-center" @click="addToCart()">
+        <button
+          @submit.prevent
+          class="btn btn-warning text-center"
+          @click="addToCart()"
+        >
           Agregar
+
         </button>
       </div>
     </div>
@@ -39,25 +45,32 @@ export default {
       type: String,
       required: true,
     },
-  },
-
-  methods: {
-    getImgUrl() {
-      return require(`@/assets/${this.imagen}`);
+    products: {
+      type: Array,
+      required: true,
     },
   },
 
-   addToCart() {
-            this.$emit("add-to-cart", this.id);
-        },
+  methods: {
+    addToCart() {
+      this.$emit("add-to-cart", this.id);
+    },
+  },
 };
 </script>
 
 <style>
 .productos {
-  padding: 25px;
-  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  margin: auto;
+  border-radius: 10px;
   box-shadow: 1px 4px 10px 0 brown;
   float: right;
+}
+
+.img-card {
+  width: 150px;
+  height: 150px;
 }
 </style>

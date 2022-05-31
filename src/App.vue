@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <NavBar
-    />
+    <NavBar />
 
     <h3 class="titulo1">Cerveza Artesanal</h3>
-    <br>
+    <br />
     <MiCard
-   v-for="(product, i) in products" :key="i"
-                    :id="product.id"
-                    :titulo="product.titulo"
-                    :precio="product.precio"
-                    :sabor="product.sabor"
-                    :imagen="product.imagen"
-                    :cantidad="product.cantidad"
-                    @add-to-cart="addToCart"
-  />
+      v-for="(product, i) in products"
+      :key="i"
+      :id="product.id"
+      :titulo="product.titulo"
+      :precio="product.precio"
+      :sabor="product.sabor"
+      :imagen="product.imagen"
+      :cantidad="product.quantity"
+      :products="products"
+      @add-to-cart="updateCart"
+    />
   </div>
 </template>
 
@@ -37,7 +38,8 @@ export default {
           titulo: "Honey",
           sabor: "Dulce",
           precio: 350,
-          imagen: "assets/honey.jpg"
+          imagen:
+            "https://res.cloudinary.com/dytpump6i/image/upload/v1653932402/honey_knvkxz.jpg",
         },
 
         {
@@ -45,7 +47,8 @@ export default {
           titulo: "Blonde",
           sabor: "Amarga",
           precio: 400,
-          imagen: "assets/blonde2.jpg"
+          imagen:
+            "https://res.cloudinary.com/dytpump6i/image/upload/v1653932534/blonde2_ts180x.jpg",
         },
 
         {
@@ -53,7 +56,8 @@ export default {
           titulo: "Ipa",
           sabor: "Amarga",
           precio: 400,
-          imagen: "assets/ipa.jpg"
+          imagen:
+            "https://res.cloudinary.com/dytpump6i/image/upload/v1653932553/ipa_yf51hn.jpg",
         },
 
         {
@@ -61,38 +65,31 @@ export default {
           titulo: "Scottish",
           sabor: "Dulce",
           precio: 350,
-          imagen: "assets/scottish.jpg"
+          imagen:
+            "https://res.cloudinary.com/dytpump6i/image/upload/v1653932564/scottish_izjelm.jpg",
         },
       ],
 
-      productsInCart:[]
+    productosEnCarrito: [],
     };
-
-
-
   },
 
-
-    // methods: {
-    //     addToCart(id) {
-    //         let productAdded = this.productsInCart.find((item) => {
-    //             return item.id == id;
-    //         });
-    //         if (productAdded != null) {
-    //             productAdded.cantidad++;
-    //         }
-    // },
-
-}
-
-
+     methods: {
+        updateCart(id) {
+            let result = this.products.find((prod) => {
+                return prod.id == id;
+            });
+            this.productosEnCarrito.push(result);
+        },
+    },
+};
 </script>
 
 <style>
-
-.titulo1{
-
-    text-align: center;
-    color: brown;
+.titulo1 {
+  text-align: center;
+  color: brown;
 }
+
+
 </style>
